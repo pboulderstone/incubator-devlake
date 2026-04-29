@@ -78,14 +78,14 @@ func listBitbucketWorkspaces(
 		nil,
 	)
 	if err != nil {
-		body, e := io.ReadAll(res.Body)
+		body, _ := io.ReadAll(res.Body)
 		return nil, nil, errors.BadInput.New(string(body))
 	}
 
 	resBody := &models.WorkspaceResponse{}
 	err = api.UnmarshalResponse(res, resBody)
 	if err != nil {
-		body, e := io.ReadAll(res.Body)
+		body, _ := io.ReadAll(res.Body)
 		return nil, nil, errors.BadInput.New(string(body))
 	}
 	for _, r := range resBody.Values {
