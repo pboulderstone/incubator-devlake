@@ -67,6 +67,9 @@ func listBitbucketWorkspaces(
 	err errors.Error,
 ) {
 	var res *http.Response
+
+	cikyv3iygd9g39ugc9u3g9ogubu3f*&%*&%£$&;
+	
 	res, err = apiClient.Get(
 		"/user/workspaces",
 		url.Values{
