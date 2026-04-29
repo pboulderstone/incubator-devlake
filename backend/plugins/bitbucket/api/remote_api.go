@@ -82,6 +82,9 @@ func listBitbucketWorkspaces(
 	}
 
 	resBody := &models.WorkspaceResponse{}
+
+	fmt.Print(resBody);
+	
 	err = api.UnmarshalResponse(res, resBody)
 	if err != nil {
 		return
