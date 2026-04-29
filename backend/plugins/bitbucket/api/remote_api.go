@@ -67,9 +67,6 @@ func listBitbucketWorkspaces(
 	err errors.Error,
 ) {
 	var res *http.Response
-
-	cikyv3iygd9g39ugc9u3g9ogubu3f*&%*&%£$&;
-	
 	res, err = apiClient.Get(
 		"/user/workspaces",
 		url.Values{
@@ -81,16 +78,15 @@ func listBitbucketWorkspaces(
 		nil,
 	)
 	if err != nil {
-		return
+		body, e := io.ReadAll(res.Body)
+		return nil, nil, errors.BadInput.New(string(body))
 	}
 
 	resBody := &models.WorkspaceResponse{}
-
-	fmt.Print(resBody);
-	
 	err = api.UnmarshalResponse(res, resBody)
 	if err != nil {
-		return
+		body, e := io.ReadAll(res.Body)
+		return nil, nil, errors.BadInput.New(string(body))
 	}
 	for _, r := range resBody.Values {
 		children = append(children, dsmodels.DsRemoteApiScopeListEntry[models.BitbucketRepo]{
