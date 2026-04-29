@@ -68,10 +68,10 @@ func listBitbucketWorkspaces(
 ) {
 	var res *http.Response
 	res, err = apiClient.Get(
-		"/user/permissions/workspaces",
+		"/user/workspaces",
 		url.Values{
 			"sort":    {"workspace.slug"},
-			"fields":  {"values.workspace.slug,values.workspace.name,pagelen,page,size"},
+			"fields":  {"values.workspace.slug,pagelen,page,size"},
 			"page":    {fmt.Sprintf("%v", page.Page)},
 			"pagelen": {fmt.Sprintf("%v", page.PageLen)},
 		},
@@ -90,8 +90,8 @@ func listBitbucketWorkspaces(
 		children = append(children, dsmodels.DsRemoteApiScopeListEntry[models.BitbucketRepo]{
 			Type:     api.RAS_ENTRY_TYPE_GROUP,
 			Id:       r.Workspace.Slug,
-			Name:     r.Workspace.Name,
-			FullName: r.Workspace.Name,
+			Name:     r.Workspace.Slug,
+			FullName: r.Workspace.Slug,
 		})
 	}
 	return
